@@ -12,7 +12,7 @@ public class ScrollLayout3 extends ScrollLayout2 {
     private static final String TAG = "ScrollLayout3";
 
     private static final int STATE_IDLE = 0;
-    private static final int STATE_DRAGING = 1;
+    private static final int STATE_DRAGGING = 1;
     private static final int MIN_VELOCITY = 600;
 
     private VelocityTracker velocityTracker;
@@ -41,7 +41,7 @@ public class ScrollLayout3 extends ScrollLayout2 {
             case MotionEvent.ACTION_DOWN:
                 Log.d(TAG, "onInterceptTouchEvent: ACTION_DOWN");
                 lastMotionX = motionX;
-                touchState = scroller.isFinished() ? STATE_IDLE : STATE_DRAGING;
+                touchState = scroller.isFinished() ? STATE_IDLE : STATE_DRAGGING;
                 if (velocityTracker != null) {
                     velocityTracker.recycle();
                     velocityTracker = null;
@@ -52,7 +52,7 @@ public class ScrollLayout3 extends ScrollLayout2 {
                 Log.d(TAG, "onInterceptTouchEvent: ACTION_MOVE");
                 final int deltaX = (int)Math.abs(ev.getX() - lastMotionX);
                 if (deltaX > touchSlop) {
-                    touchState = STATE_DRAGING;
+                    touchState = STATE_DRAGGING;
                 }
                 break;
             case MotionEvent.ACTION_CANCEL:
